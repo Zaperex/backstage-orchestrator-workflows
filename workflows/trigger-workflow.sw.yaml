@@ -1,6 +1,8 @@
 id: helloworldworkflow
 version: '1.0'
 name: HelloWorldWorkflow
+specVersion: '0.8'
+description: YAML based workflow to trigger another workflow
 
 functions:
   - name: callhelloworldworkflow
