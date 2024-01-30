@@ -1,0 +1,15 @@
+id: helloworldworkflow
+version: '1.0'
+name: HelloWorldWorkflow
+
+functions:
+  - name: callhelloworldworkflow
+    operation: /hello.sw.json#main
+start: HelloWorldState
+states:
+  - name: HelloWorldState
+    type: operation
+    actions:
+      - functionRef:
+          refName: callhelloworldworkflow
+    end: true
