@@ -1,19 +1,12 @@
-id: helloworldworkflow
-version: '1.0'
-name: HelloWorldWorkflow
-specVersion: '0.8'
-description: YAML based workflow to trigger another workflow
-dataInputSchema: schemas/yamlgreet__main-schema.json
-
-functions:
-  - name: callhelloworldworkflow
-    operation: /hello.sw.json#main
-start: HelloWorldState
+id: run_hello_world
+version: "1.0"
+specVersion: "0.8"
+name: Run Hello World Workflow
+description: Workflow to run the Hello World Workflow
+start: RunHelloWorld
 states:
-  - name: HelloWorldState
+  - name: RunHelloWorld
     type: operation
     actions:
-      - functionRef:
-          refName: callhelloworldworkflow
-    end:
-      terminate: true
+      - subFlowRef: hello_world
+    end: true
