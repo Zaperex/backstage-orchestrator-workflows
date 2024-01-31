@@ -1,0 +1,20 @@
+id: run_bulk_hello_world
+version: "1.0"
+specVersion: "0.8"
+name: Run Bulk Hello World Workflow
+description: Workflow to run a specified number of Hello World Workflows
+dataInputSchema: schemas/bulk-trigger-workflow__main-schema.json
+start: RunBulkGreetings
+states:
+  - name: RunBulkGreetings
+    type: foreach
+    inputCollection: ${ $.names }
+    iterationParam: name
+    actions:
+      - subFlowRef:
+          workflowId: yamlgreet
+          workflowVersion: '1.0'
+          arguments:
+            name: ${ $.name }
+            language: "English"
+    end: true
