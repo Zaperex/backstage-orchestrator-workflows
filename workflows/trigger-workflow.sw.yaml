@@ -3,6 +3,7 @@ version: '1.0'
 name: HelloWorldWorkflow
 specVersion: '0.8'
 description: YAML based workflow to trigger another workflow
+dataInputSchema: schemas/yamlgreet__main-schema.json
 
 functions:
   - name: callhelloworldworkflow
@@ -14,4 +15,5 @@ states:
     actions:
       - functionRef:
           refName: callhelloworldworkflow
-    end: true
+    end:
+      terminate: true
