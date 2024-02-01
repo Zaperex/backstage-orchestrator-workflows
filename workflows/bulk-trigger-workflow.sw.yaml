@@ -8,13 +8,14 @@ start: RunBulkGreetings
 states:
   - name: RunBulkGreetings
     type: foreach
-    inputCollection: ${ $.names }
+    inputCollection: ${ .names }
     iterationParam: name
     actions:
       - subFlowRef:
+          invoke: async
           workflowId: yamlgreet
           workflowVersion: '1.0'
-          arguments:
-            name: ${ $.name }
-            language: "English"
+          onParentComplete: continue
+        actionDataFilter:
+          fromStateData: "${ {name: .name} }"
     end: true
